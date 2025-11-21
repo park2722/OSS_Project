@@ -17,7 +17,7 @@ class CityGraph:
                 "광주": (328., 612.), "담양": (360., 592.), "곡성": (397., 605.), "순천": (413., 643.), "보성": (374., 677.),
                 "제주": (288., 832.)}
     def __init__(self):
-        self.graph = []
+        self.graph = {}
         self.adj = []
 
     def load_data(self):
@@ -26,8 +26,14 @@ class CityGraph:
             reader = csv.reader(f)
             for row in reader:
                 type_row = [col_type(row) for col_type, row in zip(COLUMN_TYPE, row)]
-                self.graph.append(type_row)
+                start = type_row[0]
+                info = type_row[1:]
+                if start not in self.graph.keys():
+                    self.graph[start] = []
+                self.graph[start].append(info)
 
     def print_data(self):
-        for lists in self.graph:
-            print(lists)
+        for start in self.graph.keys():
+            print(f'출발지 : {start}')
+            for end, traffic, cost, time in self.graph[start]:
+                print(f'도착지 : {end}, 교통수단 : {traffic}, 비용 : {cost}, 시간 : {time}')
