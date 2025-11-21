@@ -18,7 +18,7 @@ class CityGraph:
                 "제주": (288., 832.)}
     def __init__(self):
         self.graph = {}
-        self.adj = []
+        self.adj = {}
 
     def load_data(self):
         COLUMN_TYPE = [str, str, str, float, float]
@@ -37,3 +37,10 @@ class CityGraph:
             print(f'출발지 : {start}')
             for end, traffic, cost, time in self.graph[start]:
                 print(f'도착지 : {end}, 교통수단 : {traffic}, 비용 : {cost}, 시간 : {time}')
+
+    def distance(self, start, end):
+        xs, ys = self.graph[start]
+        xe, ye = self.graph[end]
+        return (xe - xs)**2 + (ye - ys)**2
+
+
