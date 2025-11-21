@@ -27,20 +27,25 @@ class CityGraph:
             for row in reader:
                 type_row = [col_type(row) for col_type, row in zip(COLUMN_TYPE, row)]
                 start = type_row[0]
-                info = type_row[1:]
+                end = type_row[1]
+                info = type_row[2:]
                 if start not in self.graph.keys():
-                    self.graph[start] = []
-                self.graph[start].append(info)
+                    self.graph[start] = {}
+                if end not in self.graph[start].keys():
+                    self.graph[start][end] = []
+                self.graph[start][end].append(info)
 
     def print_data(self):
         for start in self.graph.keys():
-            print(f'출발지 : {start}')
-            for end, traffic, cost, time in self.graph[start]:
-                print(f'도착지 : {end}, 교통수단 : {traffic}, 비용 : {cost}, 시간 : {time}')
+            for end in self.graph[start].keys():
+                print(f'출발지 - 도착지 : {start} - {end}')
+                for traffic, cost, time in self.graph[start][end]:
+                    print(f' -> 교통: {traffic}, 비용 : {cost}, 시간 : {time}')
 
     def distance(self, start, end):
         xs, ys = self.graph[start]
         xe, ye = self.graph[end]
         return (xe - xs)**2 + (ye - ys)**2
 
-
+    def heuristic(self, start, end):
+        dist = self.distance(start, end)
