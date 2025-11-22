@@ -77,13 +77,13 @@ class CityGraph:
             if cur_f == end: break
             if cur_f > f[cur_node] : continue
 
-            for nxt , list_info in self.City_pos[cur_node].items():
+            for nxt , list_info in self.graph[cur_node].items():
                 best_edge = float('inf')
                 for traffic, cost, time in list_info:
                    w = float('inf')
                    if mode == "time": w = time
                    elif mode == "cost": w = cost
-
+                   elif mode == "mix" : w = (cost/1000) + time
                    if best_edge > w: best_edge = w
 
                 tmp_g = g[cur_node] + best_edge
@@ -102,3 +102,21 @@ class CityGraph:
             path.reverse()
             return path
         else:  return []
+
+    def path_total(self, path, mode = "time"):
+        total_list = []
+        for i in range(len(path)-1) :
+            cur_node, nxt_node = path[i], path[i+1]
+            info_list = self.graph[cur_node][nxt_node]
+            if mode == "time":
+                best = min(info_list, key=lambda x: x[2])
+                total_list.append(best)
+            elif mode == "cost":
+                best = min(info_list, key=lambda x: x[1])
+                total_list.append(best)
+            elif mode == "mix":
+                best = min(info_list, key=lambda x: (x[1]/1000)+x[2])
+                total_list.append(best)
+        total_cost = sum(edge[1] for edge in total_list)
+        total_time = sum(edge[2] for edge in total_list)
+        return total_list, total_cost, total_time
