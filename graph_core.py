@@ -2,6 +2,9 @@ import csv
 import math
 import heapq
 
+from numpy.f2py.auxfuncs import throw_error
+
+
 class CityGraph:
     City_pos = {"서울": (353., 205.), "파주": (332., 159.), "김포": (300., 180.), "인천": (312., 211.), "남양주": (393., 188.),
                 "가평": (418., 162.), "용인": (386., 262.), "화성": (340., 272.), "여주": (445., 246.),
@@ -25,7 +28,7 @@ class CityGraph:
         with open('./citys_info.csv', 'r') as f:
             reader = csv.reader(f)
             for row in reader:
-                type_row = [col_type(row) for col_type, row in zip(COLUMN_TYPE, row)]
+                type_row = [col_type(val) for col_type, val in zip(COLUMN_TYPE, row)]
                 start = type_row[0]
                 end = type_row[1]
                 info = type_row[2:]
@@ -38,14 +41,19 @@ class CityGraph:
     def print_data(self):
         for start in self.graph.keys():
             for end in self.graph[start].keys():
-                print(f'출발지 - 도착지 : {start} - {end}')
+                print(f'{start} - {end}')
                 for traffic, cost, time in self.graph[start][end]:
                     print(f' -> 교통: {traffic}, 비용 : {cost}, 시간 : {time}')
 
-    def distance(self, start, end):
-        xs, ys = self.graph[start]
-        xe, ye = self.graph[end]
-        return (xe - xs)**2 + (ye - ys)**2
+    def distance(self, cur, nxt):
+        xc, yc = self.City_pos[cur]
+        xn, yn = self.City_pos[nxt]
+        return (xc - xn)**2 + (yc - yn)**2
 
     def heuristic(self, start, end):
-        dist = self.distance(start, end)
+        try:
+            return self.distance(start, end)
+        except KeyError:
+            return 0.0
+
+
