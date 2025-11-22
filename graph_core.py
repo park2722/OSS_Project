@@ -56,4 +56,49 @@ class CityGraph:
         except KeyError:
             return 0.0
 
+    def astar(self, start, end, mode = "time"):
+        if start not in self.City_pos or end not in self.City_pos:
+            raise ValueError("지도에 없는 도시입니다.")
 
+        g = {node: float("inf") for node in self.City_pos.keys()}
+        g[start] = 0.0
+
+        f = {node: float("inf") for node in self.City_pos.keys()}
+        f[start] = g[start] + self.heuristic(start, end)
+
+        pre_node = {node :None for node in self.City_pos.keys()}
+
+        pq = []
+        heapq.heappush(pq, (f[start], start))
+
+        while pq:
+            cur_f, cur_node = heapq.heappop(pq)
+
+            if cur_f == end: break
+            if cur_f > f[cur_node] : continue
+
+            for nxt , list_info in self.City_pos[cur_node].items():
+                best_edge = float('inf')
+                for traffic, cost, time in list_info:
+                   w = float('inf')
+                   if mode == "time": w = time
+                   elif mode == "cost": w = cost
+
+                   if best_edge > w: best_edge = w
+
+                tmp_g = g[cur_node] + best_edge
+                if tmp_g < g[nxt]:
+                    g[nxt] = tmp_g
+                    pre_node[nxt] = cur_node
+                    f[nxt] = tmp_g + self.heuristic(nxt, end)
+                    heapq.heappush(pq, (f[nxt],nxt))
+
+        if g[end] != float("inf"):
+            path = []
+            cur_node = end
+            while cur_node is not None:
+                path.append(cur_node)
+                cur_node = pre_node[cur_node]
+            path.reverse()
+            return path
+        else:  return []
