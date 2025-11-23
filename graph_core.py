@@ -48,7 +48,7 @@ class CityGraph:
 
     def heuristic(self, start, end):
         try:
-            return self.distance(start, end)
+            return self.distance(start, end)/1000
         except KeyError:
             return 0.0
 
