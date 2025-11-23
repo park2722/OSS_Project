@@ -46,6 +46,7 @@ class RouteWindow(tk.Tk):
         ttk.Radiobutton(frame_mode, text="믹스", value="mix", variable=self.mode_var).pack(anchor="w")
 
         ttk.Button(frame_top, text="경로 찾기", command=self.on_find_route).grid(row=0, column=5, padx=20)
+        ttk.Button(frame_top,text = "초기화", command=self.draw_empty_map).grid(row=0, column=6, padx=20)
 
         # ───────── 아래 영역 좌/우 분할 ─────────
         frame_bottom = ttk.Frame(self)
