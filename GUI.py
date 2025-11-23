@@ -87,8 +87,12 @@ class RouteWindow(tk.Tk):
     def on_find_route(self):
         start, end = self.start_var.get(), self.end_var.get()
         mode = self.mode_var.get()
+
         if start not in self.cg.City_pos or end not in self.cg.City_pos:
             messagebox.showwarning("입력 오류", "리스트에 없는 도시입니다.")
+            return
+        if start == end:
+            messagebox.showwarning("입력 오류", "출발지와 도착지가 같습니다.")
             return
         if not start or not end:
             messagebox.showwarning("입력 오류", "도시를 선택하세요.")
@@ -102,8 +106,16 @@ class RouteWindow(tk.Tk):
         self.text_result.insert(tk.END, f"▶ {start} → {end} 최단 경로\n")
         self.text_result.insert(tk.END, " → ".join(path) + "\n\n")
         for (tname, time, cost), (a, b) in zip(seg_list, zip(path[:-1], path[1:])):
-            self.text_result.insert(tk.END, f"{a} → {b} / {tname} / 비용 {cost:.0f}원 / 시간 {time:.0f}분\n")
-        self.text_result.insert(tk.END, f"\n총 비용: {total_cost:.0f}원\n총 시간: {total_time:.0f}분\n")
+            time_min = time%60
+            time_hour = time//60
+            if time_hour <1:
+                self.text_result.insert(tk.END, f"{a} → {b} / {tname} / 비용: {cost:.0f}원 / 시간: {time_min:.0f} min\n")
+            else: self.text_result.insert(tk.END,f"{a} → {b} / {tname} / 비용: {cost:.0f}원 / 시간: {time_hour:.0f}h {time_min:.0f} min\n")
+        total_time_hour = total_time//60
+        total_time_min = total_time%60
+        if total_time_hour <1:
+            self.text_result.insert(tk.END, f"\n총 비용: {total_cost:.0f}원\n총 시간: {total_time_min:.0f} min\n")
+        else: self.text_result.insert(tk.END, f"\n총 비용: {total_cost:.0f}원\n총 시간: {total_time_hour:.0f}h {total_time_min:.0f} min\n")
 
         # 지도 갱신
         self.draw_path_map(path)
