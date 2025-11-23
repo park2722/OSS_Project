@@ -1,9 +1,5 @@
 import csv
-import math
 import heapq
-
-from numpy.f2py.auxfuncs import throw_error
-
 
 class CityGraph:
     City_pos = {"서울": (353., 205.), "파주": (332., 159.), "김포": (300., 180.), "인천": (312., 211.), "남양주": (393., 188.),
