@@ -79,18 +79,18 @@ class CityGraph:
 
             for nxt , list_info in self.graph[cur_node].items():
                 best_edge = float('inf')
-                for traffic, cost, time in list_info:
+                for traffic, time, cost in list_info:
                    w = float('inf')
-                   if mode == "time": w = time
-                   elif mode == "cost": w = cost
-                   elif mode == "mix" : w = (cost/1000) + time
+                   if mode == "time": w = time + self.heuristic(cur_node, nxt)
+                   elif mode == "cost": w = cost + self.heuristic(cur_node, nxt)
+                   elif mode == "mix" : w = (cost/1000) + time + self.heuristic(cur_node, nxt)
                    if best_edge > w: best_edge = w
 
-                tmp_g = g[cur_node] + best_edge
-                if tmp_g < g[nxt]:
-                    g[nxt] = tmp_g
+                temp_heuristic = g[cur_node] + best_edge
+                if temp_heuristic < g[nxt]:
+                    g[nxt] = temp_heuristic
                     pre_node[nxt] = cur_node
-                    f[nxt] = tmp_g + self.heuristic(nxt, end)
+                    f[nxt] = temp_heuristic
                     heapq.heappush(pq, (f[nxt],nxt))
 
         if g[end] != float("inf"):
@@ -109,14 +109,14 @@ class CityGraph:
             cur_node, nxt_node = path[i], path[i+1]
             info_list = self.graph[cur_node][nxt_node]
             if mode == "time":
-                best = min(info_list, key=lambda x: x[2])
-                total_list.append(best)
-            elif mode == "cost":
                 best = min(info_list, key=lambda x: x[1])
                 total_list.append(best)
-            elif mode == "mix":
-                best = min(info_list, key=lambda x: (x[1]/1000)+x[2])
+            elif mode == "cost":
+                best = min(info_list, key=lambda x: x[2])
                 total_list.append(best)
-        total_cost = sum(edge[1] for edge in total_list)
-        total_time = sum(edge[2] for edge in total_list)
+            elif mode == "mix":
+                best = min(info_list, key=lambda x: (x[2]/1000)+x[1])
+                total_list.append(best)
+        total_cost = sum(edge[2] for edge in total_list)
+        total_time = sum(edge[1] for edge in total_list)
         return total_list, total_cost, total_time
