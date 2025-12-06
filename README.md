@@ -32,7 +32,7 @@ Tkinter와 Matplotlib을 활용한 GUI를 통해 결과를 **지도 위에 직�
 
 - **도시 좌표 관리**
   - `City_pos` 딕셔너리를 통해 각 도시의 지도상 좌표를 저장  
-City_pos 딕셔너리리
+- City_pos 딕셔너리  
   ![City_pos](https://github.com/park2722/OSS_Project/blob/main/README%20image/dict_city_pos.png)  
   - Heuristic 계산에 사용
 
@@ -69,36 +69,36 @@ City_pos 딕셔너리리
 Tkinter와 Matplotlib을 이용하여 **사용자 인터페이스와 지도 시각화**를 담당하는 모듈이다.
 
 #### GUI 구성
-전체 GUI  
+-전체 GUI  
 ![전체 UI](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI.png)
 - **입력 영역**
   - 출발 도시 선택
   - 도착 도시 선택
-  - 탐색 기준 선택 (시간 / 비용 / 믹스)
-  초기 입력 상태
-![입력 영역 init](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_input.png)
-  도시 선택
-![입력 영역 select](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_input_select.png)
+  - 탐색 기준 선택 (시간 / 비용 / 믹스)  
+  1. 초기 입력 상태  
+![입력 영역 init](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_input.png)  
+  1. 도시 선택  
+![입력 영역 select](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_input_select.png)  
 
 - **지도 영역**
   - 대한민국 지도 이미지 출력
   - 최단 경로 시각화
     - 출발지 : 빨간색
     - 도착지 : 파란색
-    - 이동 경로 : 주황색
-      초기 지도 상태
+    - 이동 경로 : 주황색  
+    - 초기 지도 상태  
 ![empty map](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_empty.png)
-      경로 지도 출력  
+     - 경로 지도 출력  
 ![path map](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_pathdraw.png)  
 
 - **결과 출력 영역**
   - 이동 경로 출력
   - 구간별 교통수단, 비용, 시간
-  - 총 비용 및 총 소요 시간
-    초기 텍스트
-![출력 영역 init](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_init_txt.png)
-    경로 텍스트
-![출력 영역 rslt](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_rslt_txt.png)
+  - 총 비용 및 총 소요 시간  
+  - 초기 텍스트  
+![출력 영역 init](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_init_txt.png)  
+  - 경로 텍스트  
+![출력 영역 rslt](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_rslt_txt.png)  
 
 #### 주요 기능
 
@@ -158,5 +158,5 @@ app.mainloop()
 
 ##  부록
 
-사용한 지도 이미지  
+- 사용한 지도 이미지  
 ![map](https://github.com/park2722/OSS_Project/blob/main/korea_map.png)
