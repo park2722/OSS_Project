@@ -32,7 +32,7 @@ Tkinter와 Matplotlib을 활용한 GUI를 통해 결과를 **지도 위에 직�
 
 - **도시 좌표 관리**
   - `City_pos` 딕셔너리를 통해 각 도시의 지도상 좌표를 저장  
-  ![City_pos]()  
+  ![City_pos](https://github.com/park2722/OSS_Project/blob/main/README%20image/dict_city_pos.png)  
   - Heuristic 계산에 사용
 
 - **CSV 기반 그래프 로딩**
@@ -68,12 +68,13 @@ Tkinter와 Matplotlib을 활용한 GUI를 통해 결과를 **지도 위에 직�
 Tkinter와 Matplotlib을 이용하여 **사용자 인터페이스와 지도 시각화**를 담당하는 모듈이다.
 
 #### GUI 구성
-![전체 UI]()
+![전체 UI](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI.png)
 - **입력 영역**
   - 출발 도시 선택
   - 도착 도시 선택
   - 탐색 기준 선택 (시간 / 비용 / 믹스)  
-![입력 영역]()
+![입력 영역 init](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_input.png)  
+![입력 영역 select](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_input_select.png)
 
 - **지도 영역**
   - 대한민국 지도 이미지 출력
@@ -81,13 +82,14 @@ Tkinter와 Matplotlib을 이용하여 **사용자 인터페이스와 지도 시�
     - 출발지 : 빨간색
     - 도착지 : 파란색
     - 이동 경로 : 주황색  
-![empty map]() ![path map]()  
+![empty map](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_empty.png) ![path map](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_pathdraw.png)  
 
 - **결과 출력 영역**
   - 이동 경로 출력
   - 구간별 교통수단, 비용, 시간
   - 총 비용 및 총 소요 시간  
-![출력 영역]()  
+![출력 영역 init](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_init_txt.png)
+![출력 영역 rslt](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_rslt_txt.png)
 
 #### 주요 기능
 
@@ -125,7 +127,7 @@ app.mainloop()
 
 ### 2.4 `city_info.csv`
 도시간 간선을 저장하고 있는 `csv파일`이다.  
-![csv image]()
+![csv image](https://github.com/park2722/OSS_Project/blob/main/README%20image/Csv_image.png)
 
 - 위 이미지와 같은 형태로 데이터들을 저장  
     순서대로, `출발도시, 도착도시, 교통수단, 시간, 비용`  
@@ -148,4 +150,4 @@ app.mainloop()
 ##  부록
 
 사용한 지도 이미지  
-![map]()
+![map](https://github.com/park2722/OSS_Project/blob/main/korea_map.png)
