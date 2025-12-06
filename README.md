@@ -69,15 +69,15 @@ Tkinter와 Matplotlib을 활용한 GUI를 통해 결과를 **지도 위에 직�
 Tkinter와 Matplotlib을 이용하여 **사용자 인터페이스와 지도 시각화**를 담당하는 모듈이다.
 
 #### GUI 구성
--전체 GUI  
+- 전체 GUI  
 ![전체 UI](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI.png)
 - **입력 영역**
   - 출발 도시 선택
   - 도착 도시 선택
-  - 탐색 기준 선택 (시간 / 비용 / 믹스)  
-  1. 초기 입력 상태  
+  - 탐색 기준 선택 (시간 / 비용 / 믹스)
+1. 초기 입력 상태  
 ![입력 영역 init](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_input.png)  
-  1. 도시 선택  
+1. 도시 선택  
 ![입력 영역 select](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_input_select.png)  
 
 - **지도 영역**
@@ -95,9 +95,9 @@ Tkinter와 Matplotlib을 이용하여 **사용자 인터페이스와 지도 시�
   - 이동 경로 출력
   - 구간별 교통수단, 비용, 시간
   - 총 비용 및 총 소요 시간  
-  - 초기 텍스트  
+- 초기 텍스트  
 ![출력 영역 init](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_init_txt.png)  
-  - 경로 텍스트  
+- 경로 텍스트  
 ![출력 영역 rslt](https://github.com/park2722/OSS_Project/blob/main/README%20image/GUI_rslt_txt.png)  
 
 #### 주요 기능
